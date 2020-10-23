@@ -4,10 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <title>Hello Front-End</title>
+  <title>Temperature Converter</title>
 </head>
 <body>
-  <h1>Hello Front-End</h1>
+  <h1>Temperature Converter</h1>
+
+  <form id="temp-form">
+    <input type="text" id="temp-input">
+  
+    <input type="radio" id="f-to-c" value="f-to-c" name="units">
+    <label for="f-to-c">F to C</label>
+    <input type="radio" id="c-to-f" value="c-to-f" name="units">
+    <label for="c-to-f">C to F</label>
+    
+    <button id="convert" type="submit">Convert</button>
+    <button id="clear" onClick="clearInput()" type="button" >Clear</button>
+  </form>
+
+  <div id="display-result"></div>
 
   <script type="text/javascript" src="js/script.js"></script>
 </body>
