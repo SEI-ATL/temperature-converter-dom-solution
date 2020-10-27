@@ -1,5 +1,3 @@
-
-
 const submitButton = document.querySelector('#convert')
 
 function convertFarenheitToCelcius(farenheitTemp) {
@@ -10,34 +8,61 @@ function convertCelciusToFarenheit(celciusTemp) {
   return (celciusTemp * (9 / 5)) + 32
 }
 
-function isChecked(idString) {
-  return document.querySelector(idString).checked
+function colorizeDisplay(temp, units) {
+  const display = document.querySelector('#display-result')
+
+  if (units === 'c-to-f') {
+    if (temp > 212) {
+      display.style.background = 'red'
+      display.style.color = 'white'
+    } else if (temp < 32) {
+      display.style.background = 'blue'
+      display.style.color = 'white'
+    } else {
+      display.style.background = ''
+      display.style.color = ''
+    }
+  }
+
+  if (units === 'f-to-c') {
+    if (temp > 100) {
+      display.style.background = 'red'
+      display.style.color = 'white'
+    } else if (temp < 0) {
+      display.style.background = 'blue'
+      display.style.color = 'white'
+    } else {
+      display.style.background = ''
+      display.style.color = ''
+    }
+  }
 }
 
 document.querySelector('#temp-form').addEventListener('submit', function(e) {
-  debugger
+  e.preventDefault()
   
-  // const input = document.querySelector('#temp-input')
-  // const value = parseFloat(input.value)
-  
-  // let newValue = null
-  // if (isChecked('#c-to-f')) {
-  //   newValue = convertCelciusToFarenheit(value)
-  // } else if (isChecked('#f-to-c')) {
-  //   newValue = convertFarenheitToCelcius(value)
-  // }
-  
-  // document.querySelector('#display-result').innerText = newValue
-})
+  const formData = new FormData(e.target)
+  const temp = parseFloat(formData.get('temp'))
+  const units = formData.get('units')
 
-// document.querySelector('#clear').addEventListener('click', function() {
-//   document.querySelector('#temp-input').value = ''
-// })
+  let newValue = null
+  const display = document.querySelector('#display-result')
+  if (units === 'c-to-f') {
+    newValue = convertCelciusToFarenheit(temp)
+    display.innerText = `${newValue} ${String.fromCharCode(176)}F`
+  } else if (units === 'f-to-c') {
+    newValue = convertFarenheitToCelcius(temp)
+    display.innerText = `${newValue} ${String.fromCharCode(176)}C`
+  }
+
+  colorizeDisplay(temp, units)
+})
 
 function clearInput() {
   document.querySelector('#temp-input').value = ''  
 }
 
-
-
-
+document.querySelector('#clear').addEventListener('click', function() {
+  document.querySelector('#temp-input').value = ''
+  document.querySelector('#display-result').innerText = ''
+})

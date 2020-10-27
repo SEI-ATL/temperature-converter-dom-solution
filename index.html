@@ -10,15 +10,17 @@
   <h1>Temperature Converter</h1>
 
   <form id="temp-form">
-    <input type="text" id="temp-input">
+    <input type="number" id="temp-input" name="temp">
   
-    <input type="radio" id="f-to-c" value="f-to-c" name="units">
-    <label for="f-to-c">F to C</label>
-    <input type="radio" id="c-to-f" value="c-to-f" name="units">
-    <label for="c-to-f">C to F</label>
+    <div class="radio-container">
+      <input type="radio" id="f-to-c" value="f-to-c" name="units">
+      <label for="f-to-c">F to C</label>
+      <input type="radio" id="c-to-f" value="c-to-f" name="units">
+      <label for="c-to-f">C to F</label>
+    </div>
     
     <button id="convert" type="submit">Convert</button>
-    <button id="clear" onClick="clearInput()" type="button" >Clear</button>
+    <button id="clear" type="button" >Clear</button>
   </form>
 
   <div id="display-result"></div>
